@@ -2,7 +2,7 @@ import React from "react";
 
 const CountryLineBox = () => {
   return (
-    <div className="flex justify-start items-center w-[300px] h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer hover:bg-darkgray-300">
+    <div className="flex justify-start items-center w-4/5 h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer hover:bg-darkgray-300">
       <img
         className="w-[50px] h-[25px] ml-5 overflow-hidden object-contain"
         // src="https://flagcdn.com/{country_code}.svg"
