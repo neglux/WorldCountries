@@ -12,6 +12,8 @@ export default {
     },
     info: {
       title: "country info",
+      meta: { population: "population", area: "area" },
+      economy: { currency: "currency", gini: "GINI" },
     },
     capital: {
       title: "capital",
