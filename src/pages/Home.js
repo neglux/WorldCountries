@@ -8,7 +8,7 @@ import Line from "../components/Line";
 const Home = () => {
   return (
     <Page>
-      <div className="flex flex-col justify-start items-center h-full">
+      <div className="flex flex-col justify-start items-center">
         <div className="w-full mb-10">
           <img
             className="mt-40 mb-10 mx-auto"
@@ -18,7 +18,7 @@ const Home = () => {
           <SearchBox />
         </div>
         <Line />
-        <ul className="grid grid-cols-4 gap-10 my-10 overflow-y-auto">
+        <ul className="grid grid-cols-4 gap-2 w-full my-10 overflow-y-auto">
           <li>
             <CountryLineBox />
           </li>
