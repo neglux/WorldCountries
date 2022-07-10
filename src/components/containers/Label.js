@@ -1,9 +1,9 @@
 import React from "react";
 
-const Label = ({ Label }) => {
+const Label = ({ label, value }) => {
   return (
     <h4 className="text-lg capitalize my-1">
-      {Label}:<span></span>
+      {label}:&nbsp;<span className="font-semibold">{value}</span>
     </h4>
   );
 };
