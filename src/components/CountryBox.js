@@ -12,7 +12,7 @@ const CountryBox = () => {
       <div className="flex flex-col w-full ml-10">
         <div className="flex justify-between w-full">
           <div>
-            <h2 className="text-xl">Country Code - CODE</h2>
+            <h2 className="text-xl font-semibold">Country Name - CODE</h2>
             <h5 className="text-sm mt-1">Official Name</h5>
           </div>
           <h2 className="text-xl">Region</h2>
