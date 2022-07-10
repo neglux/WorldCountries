@@ -3,30 +3,30 @@ import { AiTwotoneSound } from "react-icons/ai";
 
 const CountryBox = () => {
   return (
-    <article className="flex justify-center items-start w-full px-10 py-5 mt-5 bg-darkgray-700 rounded-lg shadow-lg">
+    <article className="flex mt-5 px-10 py-5 bg-darkgray-700 rounded-lg shadow-lg">
       <img
-        className="bg-darkgray-500 w-[200px] h-[100px]"
+        className="bg-darkgray-500 w-[200px]"
         // src="https://flagcdn.com/{country_code}.svg"
         alt=""
       />
-      <div className="flex flex-col w-full ml-10">
-        <div className="flex justify-between w-full">
+      <div className="w-full ml-10">
+        <summary className="flex justify-between w-full text-xl">
           <div>
-            <h2 className="text-xl font-semibold">Country Name - CODE</h2>
+            <h2 className="font-semibold">Country Name - CODE</h2>
             <h5 className="text-sm mt-1">Official Name</h5>
           </div>
-          <h2 className="text-xl">Region</h2>
-        </div>
+          <h2>Region</h2>
+        </summary>
         <ul className="flex mt-5">
-          <li className="flex justify-center items-center mr-5">
+          <li className="flex items-center mr-5">
             <AiTwotoneSound className=" text-blue" />
             <span className="ml-2">lang-country name</span>
           </li>
-          <li className="flex justify-center items-center mr-5">
+          <li className="flex items-center mr-5">
             <AiTwotoneSound className=" text-blue" />
             <span className="ml-2">lang-country name</span>
           </li>
-          <li className="flex justify-center items-center mr-5">
+          <li className="flex items-center mr-5">
             <AiTwotoneSound className=" text-blue" />
             <span className="ml-2">lang-country name</span>
           </li>
