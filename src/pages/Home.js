@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "../components/Page";
+import Page from "../components/containers/Page";
 import SearchBox from "../components/SearchBox";
 import logo from "../assets/logo.svg";
 import CountryLineBox from "../components/CountryLineBox";

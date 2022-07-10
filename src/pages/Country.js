@@ -5,7 +5,7 @@ import Label from "../components/containers/Label";
 import CountryBox from "../components/CountryBox";
 import CountryLineBox from "../components/CountryLineBox";
 import Line from "../components/Line";
-import Page from "../components/Page";
+import Page from "../components/containers/Page";
 import SearchBox from "../components/SearchBox";
 import strings from "../data/strings";
 
@@ -48,7 +48,6 @@ const Country = () => {
           </ContainerDark>
         </div>
       </div>
-      <footer className="h-[100px]"></footer>
     </Page>
   );
 };
