@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <div className="w-screen h-screen bg-darkgray-900 text-darkgray-100 overflow-y-auto">
+    <div className="bg-darkgray-900 text-darkgray-100">
       <Home />
       <Country />
     </div>
