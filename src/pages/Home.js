@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Page from "../components/containers/Page";
 import SearchBox from "../components/SearchBox";
 import logo from "../assets/logo.svg";
@@ -8,14 +8,12 @@ import Line from "../components/Line";
 const Home = () => {
   const [query, setQuery] = useState();
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const url = `https://restcountries.com/v3.1/name/${query}`;
   async function fetchData() {
     try {
       const response = await fetch(url);
       const fetchedData = await response.json();
       setData(fetchedData);
-      setIsLoading(false);
     } catch (error) {
       throw new Error(error);
     }
@@ -27,7 +25,6 @@ const Home = () => {
 
     return !isEmpty(query) && isLongerThanLimit(query);
   }
-
   return (
     <Page>
       <div className="flex flex-col justify-start items-center">
@@ -42,25 +39,25 @@ const Home = () => {
             changeHandler={setQuery}
             clickHandler={() => {
               setData([]);
-              console.log(checkQuery(query));
               if (checkQuery(query)) fetchData();
             }}
           />
         </div>
         <Line />
         <ul className="grid grid-cols-4 gap-2 w-full my-10 overflow-y-auto">
-          {data.map((item, index) => {
-            return (
-              <li key={index}>
-                <CountryLineBox
-                  code={item.cca3}
-                  clickHandler={() => {
-                    // route to country page
-                  }}
-                />
-              </li>
-            );
-          })}
+          {data?.status !== 404 &&
+            data.map((item, index) => {
+              return (
+                <li key={index}>
+                  <CountryLineBox
+                    code={item.cca3}
+                    clickHandler={() => {
+                      // route to country page
+                    }}
+                  />
+                </li>
+              );
+            })}
         </ul>
       </div>
     </Page>
