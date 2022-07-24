@@ -8,6 +8,7 @@ import Line from "../components/Line";
 import Page from "../components/containers/Page";
 import strings from "../data/strings";
 import ContainerRow from "../components/containers/ContainerRow";
+import Map from "../components/Map";
 
 const Country = ({
   flags,
@@ -15,7 +16,6 @@ const Country = ({
   cca3,
   subregion,
   translations,
-  maps,
   borders,
   languages,
   population,
@@ -24,6 +24,7 @@ const Country = ({
   gini,
   independent,
   unMember,
+  latlng,
 }) => {
   const { map, neighbors, info, capital } = strings.country;
   const currencyCode = Object.keys(currencies)[0];
@@ -37,15 +38,19 @@ const Country = ({
     giniYear = Object.keys(gini)[0];
     giniIndex = gini[giniYear];
   }
+
   return (
     <Page>
       <Line />
       <CountryBox {...{ flags, name, cca3, subregion, translations }} />
       <ContainerRow>
-        <ContainerDark title={map.title} style="w-3/5">
-          {/* https://developers.google.com/maps/documentation/maps-static/start */}
+        <ContainerDark style="w-3/5 h-[450px] overflow-hidden">
+          <Map coord={latlng} />
         </ContainerDark>
-        <ContainerDark title={neighbors.title} style="w-1/3">
+        <ContainerDark
+          title={neighbors.title}
+          style="w-1/3 overflow-y-auto h-[450px]"
+        >
           <ul className="pl-2">
             {borders?.map((code) => (
               <li className="mt-2">
