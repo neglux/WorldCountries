@@ -15,7 +15,7 @@ export default {
       meta: { lang: "spoken language", population: "population", area: "area" },
       economy: { currency: "currency", gini: "GINI" },
     },
-    capital: {
+    capitalContainer: {
       title: "capital",
     },
   },
