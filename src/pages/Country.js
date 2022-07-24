@@ -9,6 +9,7 @@ import Page from "../components/containers/Page";
 import strings from "../data/strings";
 import ContainerRow from "../components/containers/ContainerRow";
 import Map from "../components/Map";
+import Weather from "../components/Weather";
 
 const Country = ({
   flags,
@@ -25,8 +26,10 @@ const Country = ({
   independent,
   unMember,
   latlng,
+  capital,
+  capitalInfo,
 }) => {
-  const { map, neighbors, info, capital } = strings.country;
+  const { neighbors, info, capitalContainer } = strings.country;
   const currencyCode = Object.keys(currencies)[0];
   const currencyName = currencies[currencyCode].name;
   const currencySymbol = currencies[currencyCode].symbol;
@@ -49,11 +52,11 @@ const Country = ({
         </ContainerDark>
         <ContainerDark
           title={neighbors.title}
-          style="w-1/3 overflow-y-auto h-[450px]"
+          style="w-1/3 overflow-y-auto h-fit max-h-[450px]"
         >
           <ul className="pl-2">
-            {borders?.map((code) => (
-              <li className="mt-2">
+            {borders?.map((code, index) => (
+              <li className="mt-2" key={index}>
                 <CountryLineBox code={code} />
               </li>
             ))}
@@ -82,7 +85,9 @@ const Country = ({
             } and ${unMember ? "a member of UN" : "not a member of UN"}.`}</p>
           </div>
         </ContainerDark>
-        <ContainerDark title={capital.title} style="w-1/3">
+        <ContainerDark title={capitalContainer.title} style="w-1/3 h-fit">
+          <p className="font-semibold">{capital[0]}</p>
+          <Weather latlng={capitalInfo.latlng} />
           {/* https://open-meteo.com/en/docs#api-documentation */}
           <ContainerLight></ContainerLight>
         </ContainerDark>
