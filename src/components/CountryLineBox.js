@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useGlobalContext } from "../contexts/AppContext";
 
 const CountryLineBox = ({ code }) => {
+  const { setSelectedCountry } = useGlobalContext();
+
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const url = `https://restcountries.com/v3.1/alpha/${code}`;
@@ -24,7 +27,12 @@ const CountryLineBox = ({ code }) => {
       <div className="flex justify-start items-center w-4/5 h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer animate-pulse"></div>
     );
   return (
-    <div className="flex justify-start items-center w-4/5 h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer hover:bg-darkgray-300">
+    <div
+      className="flex justify-start items-center w-4/5 h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer hover:bg-darkgray-300"
+      onClick={() => {
+        setSelectedCountry(data[0]);
+      }}
+    >
       <img
         className="w-[50px] h-[25px] ml-5 overflow-hidden object-contain"
         src={data[0].flags.svg}

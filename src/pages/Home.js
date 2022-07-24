@@ -49,12 +49,7 @@ const Home = () => {
             data.map((item, index) => {
               return (
                 <li key={index}>
-                  <CountryLineBox
-                    code={item.cca3}
-                    clickHandler={() => {
-                      // route to country page
-                    }}
-                  />
+                  <CountryLineBox code={item.cca3} />
                 </li>
               );
             })}
