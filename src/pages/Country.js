@@ -6,7 +6,6 @@ import CountryBox from "../components/CountryBox";
 import CountryLineBox from "../components/CountryLineBox";
 import Line from "../components/Line";
 import Page from "../components/containers/Page";
-import SearchBox from "../components/SearchBox";
 import strings from "../data/strings";
 import ContainerRow from "../components/containers/ContainerRow";
 
@@ -18,16 +17,20 @@ const Country = ({
   translations,
   maps,
   borders,
+  languages,
   population,
   area,
   currencies,
   gini,
+  independent,
+  unMember,
 }) => {
   const { map, neighbors, info, capital } = strings.country;
   const currencyCode = Object.keys(currencies)[0];
   const currencyName = currencies[currencyCode].name;
   const currencySymbol = currencies[currencyCode].symbol;
   const currencyString = `${currencyName} ${currencySymbol}`;
+  const primaryLangCode = Object.keys(languages)[0];
   let giniYear;
   let giniIndex;
   if (gini) {
@@ -36,7 +39,6 @@ const Country = ({
   }
   return (
     <Page>
-      <SearchBox />
       <Line />
       <CountryBox {...{ flags, name, cca3, subregion, translations }} />
       <ContainerRow>
@@ -45,7 +47,7 @@ const Country = ({
         </ContainerDark>
         <ContainerDark title={neighbors.title} style="w-1/3">
           <ul className="pl-2">
-            {borders.map((code) => (
+            {borders?.map((code) => (
               <li className="mt-2">
                 <CountryLineBox code={code} />
               </li>
@@ -56,6 +58,10 @@ const Country = ({
       <ContainerRow>
         <ContainerDark title={info.title} style="w-3/5">
           <div className="mb-5">
+            <Label label={info.meta.lang} value={languages[primaryLangCode]} />
+          </div>
+          <Line />
+          <div className="mb-5">
             <Label label={info.meta.population} value={population} />
             <Label label={info.meta.area} value={area} />
           </div>
@@ -65,8 +71,10 @@ const Country = ({
             <Label label={info.economy.gini} value={giniIndex} />
           </div>
           <Line />
-          <div>
-            <p></p>
+          <div className="mt-5">
+            <p>{`${name.common} is ${
+              independent ? "independent" : "dependent"
+            } and ${unMember ? "a member of UN" : "not a member of UN"}.`}</p>
           </div>
         </ContainerDark>
         <ContainerDark title={capital.title} style="w-1/3">
