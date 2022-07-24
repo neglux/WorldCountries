@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 
-function MyComponent({ coord }) {
+function MapChanger({ coord }) {
   const map = useMap();
   map.flyTo(coord, 5);
   return null;
@@ -21,7 +21,7 @@ const Map = ({ coord }) => {
       zoom={5}
       scrollWheelZoom={false}
     >
-      {isNewCoord && <MyComponent coord={coord} />}
+      {isNewCoord && <MapChanger coord={coord} />}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
