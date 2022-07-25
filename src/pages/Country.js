@@ -44,7 +44,7 @@ const Country = ({
 
   return (
     <Page>
-      <SearchBox />
+      <SearchBox isNavbarSearch={true} />
       <Line />
       <CountryBox {...{ flags, name, cca3, subregion, translations }} />
       <div className="flex justify-between items-start w-full h-fit">
