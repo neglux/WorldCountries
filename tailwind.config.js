@@ -12,6 +12,7 @@ module.exports = {
         900: "#1E1E1E",
       },
       blue: "#94CBFF",
+      orange: "#face55",
     },
   },
   plugins: [],
