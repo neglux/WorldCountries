@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Weather = ({ latlng }) => {
+const Weather = ({ latlng, timezone }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const url = `https://api.open-meteo.com/v1/forecast?latitude=${latlng[0]}&longitude=${latlng[1]}&hourly=temperature_2m`;
@@ -31,8 +31,19 @@ const Weather = ({ latlng }) => {
   return (
     <article>
       <h2 className="text-sm">{now.toDateString()}</h2>
-      {currentIx && (
-        <span>{data.hourly["temperature_2m"][currentIx - 3]}°C</span>
+      {currentIx && parseInt(timezone.substr(4)) ? (
+        <span>
+          {
+            data.hourly["temperature_2m"][
+              currentIx - parseInt(timezone.substr(4))
+            ]
+          }
+          °C
+        </span>
+      ) : (
+        <span className="flex text-sm mx-auto w-fit my-5">
+          No Weather Information
+        </span>
       )}
     </article>
   );
