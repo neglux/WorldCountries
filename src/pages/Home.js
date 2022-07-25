@@ -44,7 +44,7 @@ const Home = () => {
           />
         </div>
         <Line />
-        <ul className="grid grid-cols-4 gap-2 w-full my-10 overflow-y-auto">
+        <ul className="grid grid-cols-4 gap-2 w-full my-10 h-[180px] overflow-y-auto">
           {data?.status !== 404 &&
             data.map((item, index) => {
               return (
