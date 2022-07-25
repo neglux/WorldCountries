@@ -1,13 +1,11 @@
 import React from "react";
 import ContainerDark from "../components/containers/ContainerDark";
-import ContainerLight from "../components/containers/ContainerLight";
 import Label from "../components/containers/Label";
 import CountryBox from "../components/CountryBox";
 import CountryLineBox from "../components/CountryLineBox";
 import Line from "../components/Line";
 import Page from "../components/containers/Page";
 import strings from "../data/strings";
-import ContainerRow from "../components/containers/ContainerRow";
 import Map from "../components/Map";
 import Weather from "../components/Weather";
 
@@ -28,6 +26,7 @@ const Country = ({
   latlng,
   capital,
   capitalInfo,
+  timezones,
 }) => {
   const { neighbors, info, capitalContainer } = strings.country;
   const currencyCode = Object.keys(currencies)[0];
@@ -46,52 +45,56 @@ const Country = ({
     <Page>
       <Line />
       <CountryBox {...{ flags, name, cca3, subregion, translations }} />
-      <ContainerRow>
-        <ContainerDark style="w-3/5 h-[450px] overflow-hidden">
-          <Map coord={latlng} />
-        </ContainerDark>
-        <ContainerDark
-          title={neighbors.title}
-          style="w-1/3 overflow-y-auto h-fit max-h-[450px]"
-        >
-          <ul className="pl-2">
-            {borders?.map((code, index) => (
-              <li className="mt-2" key={index}>
-                <CountryLineBox code={code} />
-              </li>
-            ))}
-          </ul>
-        </ContainerDark>
-      </ContainerRow>
-      <ContainerRow>
-        <ContainerDark title={info.title} style="w-3/5">
-          <div className="mb-5">
-            <Label label={info.meta.lang} value={languages[primaryLangCode]} />
-          </div>
-          <Line />
-          <div className="mb-5">
-            <Label label={info.meta.population} value={population} />
-            <Label label={info.meta.area} value={area} />
-          </div>
-          <Line />
-          <div className="my-5">
-            <Label label={info.economy.currency} value={currencyString} />
-            <Label label={info.economy.gini} value={giniIndex} />
-          </div>
-          <Line />
-          <div className="mt-5">
-            <p>{`${name.common} is ${
-              independent ? "independent" : "dependent"
-            } and ${unMember ? "a member of UN" : "not a member of UN"}.`}</p>
-          </div>
-        </ContainerDark>
-        <ContainerDark title={capitalContainer.title} style="w-1/3 h-fit">
-          <p className="font-semibold">{capital[0]}</p>
-          <Weather latlng={capitalInfo.latlng} />
-          {/* https://open-meteo.com/en/docs#api-documentation */}
-          <ContainerLight></ContainerLight>
-        </ContainerDark>
-      </ContainerRow>
+
+      <div className="flex justify-between items-start w-full h-fit">
+        <div className="py-10 flex-1 mr-5">
+          <ContainerDark style="h-[450px] overflow-hidden">
+            <Map coord={latlng} />
+          </ContainerDark>
+          <ContainerDark title={info.title}>
+            <div className="mb-5">
+              <Label
+                label={info.meta.lang}
+                value={languages[primaryLangCode]}
+              />
+            </div>
+            <Line />
+            <div className="mb-5">
+              <Label label={info.meta.population} value={population} />
+              <Label label={info.meta.area} value={area} />
+            </div>
+            <Line />
+            <div className="my-5">
+              <Label label={info.economy.currency} value={currencyString} />
+              <Label label={info.economy.gini} value={giniIndex} />
+            </div>
+            <Line />
+            <div className="mt-5">
+              <p>{`${name.common} is ${
+                independent ? "independent" : "dependent"
+              } and ${unMember ? "a member of UN" : "not a member of UN"}.`}</p>
+            </div>
+          </ContainerDark>
+        </div>
+        <div className="py-10 w-[350px]">
+          <ContainerDark
+            title={neighbors.title}
+            style="overflow-y-auto h-fit max-h-[450px]"
+          >
+            <ul className="pl-2">
+              {borders?.map((code, index) => (
+                <li className="mt-2" key={index}>
+                  <CountryLineBox code={code} />
+                </li>
+              ))}
+            </ul>
+          </ContainerDark>
+          <ContainerDark title={capitalContainer.title}>
+            <p className="font-semibold">{capital[0]}</p>
+            <Weather latlng={capitalInfo.latlng} timezone={timezones[0]} />
+          </ContainerDark>
+        </div>
+      </div>
     </Page>
   );
 };
