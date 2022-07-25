@@ -1,11 +1,12 @@
 import React from "react";
-import ContainerDark from "../components/containers/ContainerDark";
-import Label from "../components/containers/Label";
-import CountryBox from "../components/CountryBox";
-import CountryLineBox from "../components/CountryLineBox";
-import Line from "../components/Line";
-import Page from "../components/containers/Page";
 import strings from "../data/strings";
+import Page from "../components/containers/Page";
+import ContainerDark from "../components/containers/ContainerDark";
+import CountryBox from "../components/containers/CountryBox";
+import CountryLineBox from "../components/containers/CountryLineBox";
+import SearchBox from "../components/SearchBox";
+import Line from "../components/Line";
+import Label from "../components/Label";
 import Map from "../components/Map";
 import Weather from "../components/Weather";
 
@@ -43,11 +44,11 @@ const Country = ({
 
   return (
     <Page>
+      <SearchBox />
       <Line />
       <CountryBox {...{ flags, name, cca3, subregion, translations }} />
-
       <div className="flex justify-between items-start w-full h-fit">
-        <div className="py-10 flex-1 mr-5">
+        <div className="flex-1 mr-5">
           <ContainerDark style="h-[450px] overflow-hidden">
             <Map coord={latlng} />
           </ContainerDark>
@@ -76,7 +77,7 @@ const Country = ({
             </div>
           </ContainerDark>
         </div>
-        <div className="py-10 w-[350px]">
+        <div className="w-[350px]">
           <ContainerDark
             title={neighbors.title}
             style="overflow-y-auto h-fit max-h-[450px]"

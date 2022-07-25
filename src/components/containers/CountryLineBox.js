@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "../contexts/AppContext";
+import { useGlobalContext } from "../../contexts/AppContext";
 
 const CountryLineBox = ({ code }) => {
   const { setSelectedCountry } = useGlobalContext();
