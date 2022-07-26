@@ -2,9 +2,10 @@ import React from "react";
 
 const Label = ({ label, value }) => {
   return (
-    <h4 className="text-lg capitalize my-1">
-      {label}:&nbsp;<span className="font-semibold">{value}</span>
-    </h4>
+    <article className="text-lg capitalize my-1">
+      <h4 className="inline mr-2">{label}:</h4>
+      <span className="font-semibold spacing tracking-wide">{value}</span>
+    </article>
   );
 };
 

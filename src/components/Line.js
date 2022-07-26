@@ -1,7 +1,7 @@
 import React from "react";
 
 const Line = () => {
-  return <div className="w-full h-[1px] bg-darkgray-500 rounded-lg"></div>;
+  return <hr className="w-full h-[1px] text-darkgray-500 rounded-lg"></hr>;
 };
 
 export default Line;

@@ -24,10 +24,10 @@ const CountryLineBox = ({ code }) => {
 
   if (isLoading)
     return (
-      <div className="flex justify-start items-center w-4/5 h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer animate-pulse"></div>
+      <article className="flex justify-start items-center w-4/5 h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer animate-pulse"></article>
     );
   return (
-    <div
+    <article
       className="flex justify-start items-center w-4/5 h-[40px] bg-darkgray-500 rounded-md shadow-md text-sm cursor-pointer hover:bg-darkgray-300"
       onClick={() => {
         setSelectedCountry(data[0]);
@@ -39,7 +39,7 @@ const CountryLineBox = ({ code }) => {
         alt="country flag"
       />
       <h5 className="ml-5">{data[0].name.common}</h5>
-    </div>
+    </article>
   );
 };
 
