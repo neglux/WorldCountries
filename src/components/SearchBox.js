@@ -54,7 +54,7 @@ const SearchBox = ({ isNavbarSearch }) => {
         </button>
       </div>
       {isNavbarSearch && isResultWindowOpen && (
-        <ul className="absolute grid grid-cols-4 gap-2 overflow-y-auto my-auto w-full h-[200px] bg-darkgray-500 rounded-lg shadow-lg">
+        <ul className="absolute grid grid-cols-3 gap-3 overflow-y-auto my-auto w-full h-[200px] bg-darkgray-700 rounded-lg shadow-lg px-10 py-5">
           {searchResults?.status !== 404 &&
             searchResults.map((item, index) => {
               return (

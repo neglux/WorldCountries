@@ -15,7 +15,7 @@ const CountryBox = ({ flags, name, cca3, subregion, translations }) => {
           </div>
           <h2>{subregion}</h2>
         </summary>
-        <ul className="flex mt-5">
+        <ul className="flex mt-5 sm:flex-col lg:flex-row">
           <li className="flex items-center mr-5">
             <AiTwotoneSound className=" text-blue" />
             <span className="ml-2">deu - {translations?.deu.common}</span>
