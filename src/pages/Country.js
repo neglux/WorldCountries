@@ -30,16 +30,33 @@ const Country = ({
   timezones,
 }) => {
   const { neighbors, info, capitalContainer } = strings.country;
-  const currencyCode = Object.keys(currencies)[0];
-  const currencyName = currencies[currencyCode].name;
-  const currencySymbol = currencies[currencyCode].symbol;
-  const currencyString = `${currencyName} ${currencySymbol}`;
-  const primaryLangCode = Object.keys(languages)[0];
-  let giniYear;
-  let giniIndex;
-  if (gini) {
-    giniYear = Object.keys(gini)[0];
-    giniIndex = gini[giniYear];
+  const currency = getCurrency(currencies);
+  const giniValue = gini ? getGINI(gini) : "no data";
+  const languageStr = getLanguages(languages);
+
+  function getCurrency(currencies) {
+    const code = Object.keys(currencies)[0];
+    const currency = {
+      name: currencies[code].name,
+      symbol: currencies[code].symbol,
+    };
+
+    currency.string = `${currency.name} ${currency.symbol}`;
+    return currency;
+  }
+
+  function getGINI(gini) {
+    const giniValue = {
+      year: Object.keys(gini)[0],
+    };
+    giniValue.index = gini[giniValue.year];
+    giniValue.string = `${giniValue.index} (${giniValue.year})`;
+
+    return giniValue;
+  }
+
+  function getLanguages(languages) {
+    return Object.values(languages).join(", ");
   }
 
   return (
@@ -47,27 +64,33 @@ const Country = ({
       <SearchBox isNavbarSearch={true} />
       <Line />
       <CountryBox {...{ flags, name, cca3, subregion, translations }} />
-      <div className="flex justify-between items-start w-full h-fit">
-        <div className="flex-1 mr-5">
+      <div className="flex sm:flex-col lg:flex-row justify-between items-start w-full h-fit">
+        <div className="flex-1 mr-5 w-full">
           <ContainerDark style="h-[450px] overflow-hidden">
             <Map coord={latlng} />
           </ContainerDark>
           <ContainerDark title={info.title}>
             <div className="mb-5">
-              <Label
-                label={info.meta.lang}
-                value={languages[primaryLangCode]}
-              />
+              <Label label={info.meta.lang} value={languageStr} />
             </div>
             <Line />
             <div className="mb-5">
-              <Label label={info.meta.population} value={population} />
-              <Label label={info.meta.area} value={area} />
+              <Label
+                label={info.meta.population}
+                value={Intl.NumberFormat("en-US").format(population)}
+              />
+              <Label
+                label={info.meta.area}
+                value={Intl.NumberFormat("en-US").format(area) + "km²"}
+              />
             </div>
             <Line />
             <div className="my-5">
-              <Label label={info.economy.currency} value={currencyString} />
-              <Label label={info.economy.gini} value={giniIndex} />
+              <Label label={info.economy.currency} value={currency?.string} />
+              <Label
+                label={info.economy.gini}
+                value={giniValue.string || giniValue}
+              />
             </div>
             <Line />
             <div className="mt-5">
@@ -77,7 +100,7 @@ const Country = ({
             </div>
           </ContainerDark>
         </div>
-        <div className="w-[350px]">
+        <div className="w-[350px] sm:w-full lg:w-[350px]">
           <ContainerDark
             title={neighbors.title}
             style="overflow-y-auto h-fit max-h-[450px]"

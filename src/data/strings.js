@@ -12,7 +12,11 @@ export default {
     },
     info: {
       title: "country info",
-      meta: { lang: "spoken language", population: "population", area: "area" },
+      meta: {
+        lang: "spoken languages",
+        population: "population",
+        area: "area",
+      },
       economy: { currency: "currency", gini: "GINI" },
     },
     capitalContainer: {
