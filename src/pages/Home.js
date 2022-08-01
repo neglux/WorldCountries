@@ -20,7 +20,7 @@ const Home = () => {
           <SearchBox />
         </div>
         <Line />
-        <ul className="grid grid-cols-4 gap-2 w-full my-10 h-[180px] overflow-y-auto">
+        <ul className="grid sm:grid-cols-1 lg:grid-cols-3 gap-2 w-full my-10 h-[180px] overflow-y-auto">
           {searchResults?.status !== 404 &&
             searchResults.map((item, index) => {
               return (
