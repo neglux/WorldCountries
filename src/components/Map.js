@@ -20,6 +20,9 @@ const Map = ({ coord }) => {
       center={coord}
       zoom={5}
       scrollWheelZoom={false}
+      dragging={false}
+      maxZoom={7}
+      minZoom={3}
     >
       {isNewCoord && <MapChanger coord={coord} />}
       <TileLayer
