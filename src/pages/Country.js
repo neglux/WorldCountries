@@ -9,6 +9,9 @@ import Line from "../components/Line";
 import Label from "../components/Label";
 import Map from "../components/Map";
 import Weather from "../components/Weather";
+import getCurrency from "../helpers/getCurrency";
+import getGINI from "../helpers/getGINI";
+import getLanguages from "../helpers/getLanguages";
 
 const Country = ({
   flags,
@@ -33,31 +36,6 @@ const Country = ({
   const currency = getCurrency(currencies);
   const giniValue = gini ? getGINI(gini) : "no data";
   const languageStr = getLanguages(languages);
-
-  function getCurrency(currencies) {
-    const code = Object.keys(currencies)[0];
-    const currency = {
-      name: currencies[code].name,
-      symbol: currencies[code].symbol,
-    };
-
-    currency.string = `${currency.name} ${currency.symbol}`;
-    return currency;
-  }
-
-  function getGINI(gini) {
-    const giniValue = {
-      year: Object.keys(gini)[0],
-    };
-    giniValue.index = gini[giniValue.year];
-    giniValue.string = `${giniValue.index} (${giniValue.year})`;
-
-    return giniValue;
-  }
-
-  function getLanguages(languages) {
-    return Object.values(languages).join(", ");
-  }
 
   return (
     <Page>

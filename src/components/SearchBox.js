@@ -4,6 +4,7 @@ import CountryLineBox from "./containers/CountryLineBox";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaSpinner } from "react-icons/fa";
 import { useGlobalContext } from "../contexts/AppContext";
+import checkQuery from "../helpers/checkQuery";
 
 const SearchBox = ({ isNavbarSearch }) => {
   const { placeholder, maxLength } = strings.searchBox;
@@ -25,13 +26,6 @@ const SearchBox = ({ isNavbarSearch }) => {
       setIsLoading(false);
       throw new Error(error);
     }
-  }
-
-  function checkQuery(query) {
-    const isEmpty = (query) => !query;
-    const isLongerThanLimit = (query) => query.length >= 3;
-
-    return !isEmpty(query) && isLongerThanLimit(query);
   }
   return (
     <div className="relative">
