@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useFetch from "../../hooks/useFetch";
 import { useGlobalContext } from "../../contexts/AppContext";
 
 const CountryLineBox = ({ code }) => {
   const { setSelectedCountry } = useGlobalContext();
-
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const url = `https://restcountries.com/v3.1/alpha/${code}`;
-  async function fetchData() {
-    try {
-      const response = await fetch(url);
-      const fetchedData = await response.json();
-      setData(fetchedData);
-      setIsLoading(false);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, [code]);
+  const { isLoading, data } = useFetch(
+    `https://restcountries.com/v3.1/alpha/${code}`
+  );
 
   if (isLoading)
     return (
