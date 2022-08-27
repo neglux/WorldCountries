@@ -92,8 +92,12 @@ const Country = ({
             </ul>
           </ContainerDark>
           <ContainerDark title={capitalContainer.title}>
-            <p className="font-semibold">{capital[0]}</p>
-            <Weather latlng={capitalInfo.latlng} timezone={timezones[0]} />
+            {capital && (
+              <>
+                <p className="font-semibold">{capital[0]}</p>
+                <Weather latlng={capitalInfo.latlng} timezone={timezones[0]} />
+              </>
+            )}
           </ContainerDark>
         </div>
       </div>
